@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+
+import web3 from '../../core/web3';
+import { DIVIDEN_ABI } from '../../config/config';
+
 
 const useStyles = makeStyles({
   root: {
@@ -30,10 +35,29 @@ const useStyles = makeStyles({
 const DashBoard = () => {
 	const classes = useStyles();
 
-	const reward = useState(0);
+	const myAddress = useSelector((state) => state.main.myAddress);
+	const dividenAddress = useSelector((state) => state.main.dividenAddress);
 
-	const handleClaim = () => {
-		alert()
+	const [reward, setReward] = useState(0);
+
+	useEffect(() => {
+		const getMim = async () => {
+			const dividenInstance = new web3.eth.Contract(DIVIDEN_ABI, dividenAddress);
+			const val = await dividenInstance.methods.totalDividends().call();
+			setReward(val);
+		};
+		if (dividenAddress) {
+			getMim();
+		}
+	}, [dividenAddress])
+
+	const handleClaim = async () => {
+		if (dividenAddress === null) {
+			alert("please connect wallet!!!");
+			return
+		}
+		const dividenInstance = new web3.eth.Contract(DIVIDEN_ABI, dividenAddress);
+		await dividenInstance.methods.claimDividend().send({from: myAddress});
 	}
 
 	return (

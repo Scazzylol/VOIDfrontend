@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import Web3 from 'web3';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from '@mui/material/Button';
 import {
 	setMyAddress,
+	setDividenAddress,
 	setMyBalance
 } from '../pages/mainSlice';
+
+import web3 from '../core/web3';
+import voidInstance from '../core/voidInstance';
 
 const MyWallet = () => {
 
 	const dispatch = useDispatch();
 	const account = useSelector((state) => state.main.myAddress);
-	const balance = useSelector((state) => state.main.myBalance);
 
 	if (typeof window.ethereum === 'undefined') {
 	  console.log('MetaMask is not installed!');
@@ -26,23 +28,15 @@ const MyWallet = () => {
 		checkNetwork();
 	}
 
-	const web3 = new Web3(Web3.givenProvider);
+	const getBalance = async (account) => {
+		const val = await voidInstance.methods.balanceOf(account).call();
 
-	const getEth = (account) => {
-		web3.eth.getBalance(account, function (err, result) {
-			console.log('account result', result);
-		  if (err) {
-		    console.log(err);
-		  } else {
-		    dispatch(setMyBalance(web3.utils.fromWei(result, "ether")));
-		  }
-		})
+		dispatch(setMyBalance(web3.utils.fromWei(val, "gwei")));
 
-		setTimeout(() => getEth(account));
+		setTimeout(() => getBalance(account));
 	}
 
 	const handleConnectWallet = async () => {
-		console.log('handleConnectWallet');
 		try {
 		  // Request account access
 		  await window.ethereum.enable();
@@ -53,7 +47,10 @@ const MyWallet = () => {
 		const accounts = await web3.eth.getAccounts();
 		dispatch(setMyAddress(accounts[0]));
 
-		setTimeout(() => getEth(accounts[0]));
+		const dividenAddress = await voidInstance.methods.distributorAddress().call();
+		dispatch(setDividenAddress(dividenAddress));
+
+		setTimeout(() => getBalance(accounts[0]));
   }
 
 	const shortenAddress = (address) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -32,7 +32,6 @@ const useStyles = makeStyles({
 const HeaderLayout = () => {
 	const classes = useStyles();
 	
-	const dispatch = useDispatch();
 	const balance = useSelector((state) => state.main.myBalance);
 
 	return (
@@ -57,7 +56,7 @@ const HeaderLayout = () => {
       <div className={classes.right}>
 				<Typography variant="h6" mx={2} gutterBottom component="span">
 				{balance > 0 ?
-					balance
+					`${balance} VOID`
 				:
 	        "0.000 VOID"
 				}
