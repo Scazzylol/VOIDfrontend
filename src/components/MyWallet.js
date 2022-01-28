@@ -29,7 +29,8 @@ const MyWallet = () => {
 	const web3 = new Web3(Web3.givenProvider);
 
 	const getEth = (account) => {
-		web3.eth.getBalance(account, function(err, result) {
+		web3.eth.getBalance(account, function (err, result) {
+			console.log('account result', result);
 		  if (err) {
 		    console.log(err);
 		  } else {
@@ -41,6 +42,7 @@ const MyWallet = () => {
 	}
 
 	const handleConnectWallet = async () => {
+		console.log('handleConnectWallet');
 		try {
 		  // Request account access
 		  await window.ethereum.enable();
