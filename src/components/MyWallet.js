@@ -18,11 +18,11 @@ const MyWallet = () => {
 	if (typeof window.ethereum === 'undefined') {
 	  console.log('MetaMask is not installed!');
 	  return;
-	} else if (window.ethereum.chainId !== '0x3') {
+	} else if (window.ethereum.chainId !== '0xfa2') {
 		const checkNetwork = async () => {
 			await window.ethereum.request({
 			  method: 'wallet_switchEthereumChain',
-			  params: [{ chainId: '0x3' }],
+			  params: [{ chainId: '0xfa2' }],
 			});
 		};
 		checkNetwork();
