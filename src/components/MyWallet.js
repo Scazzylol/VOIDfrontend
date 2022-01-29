@@ -9,6 +9,7 @@ import {
 
 import web3 from '../core/web3';
 import voidInstance from '../core/voidInstance';
+import { CHAIN_ID } from '../config/config';
 
 const MyWallet = () => {
 
@@ -18,11 +19,11 @@ const MyWallet = () => {
 	if (typeof window.ethereum === 'undefined') {
 	  console.log('MetaMask is not installed!');
 	  return;
-	} else if (window.ethereum.chainId !== '0xfa2') {
+	} else if (window.ethereum.chainId !== CHAIN_ID) {
 		const checkNetwork = async () => {
 			await window.ethereum.request({
 			  method: 'wallet_switchEthereumChain',
-			  params: [{ chainId: '0xfa2' }],
+			  params: [{ chainId: CHAIN_ID }],
 			});
 		};
 		checkNetwork();

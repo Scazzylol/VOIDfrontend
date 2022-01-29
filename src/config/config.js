@@ -1,4 +1,5 @@
 export const VOID_ADDRESS = '0x41FEa95BECE93cf9052d5287c1caeF90799aa0D2'
+export const CHAIN_ID = '0xfa2'
 
 export const VOID_ABI = [
 	{
