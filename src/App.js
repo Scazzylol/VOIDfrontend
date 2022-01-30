@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import HeaderLayout from './layout/HeaderLayout';
+import HeaderLayout from './layout/header/HeaderLayout';
 import MainLayout from './layout/MainLayout';
 import FooterLayout from './layout/FooterLayout';
 import { store } from './store';
@@ -13,7 +13,6 @@ function App() {
           <HeaderLayout />
         </div>
         <MainLayout />
-        <FooterLayout />
       </div>
     </Provider>
   );

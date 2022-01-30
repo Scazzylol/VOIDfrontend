@@ -17,8 +17,10 @@
     "node-polyfill-webpack-plugin": "^1.1.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-iframe": "^1.8.0",
     "react-redux": "^7.2.6",
     "react-scripts": "4.0.3",
+    "styled-components": "^5.3.3",
     "web-vitals": "^2.1.0",
     "web3": "^1.7.0"
   },

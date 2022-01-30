@@ -11,25 +11,25 @@ import { DIVIDEN_ABI } from '../../config/config';
 
 
 const useStyles = makeStyles({
-  root: {
-	  display: "flex",
-	  flexDirection: "column",
-	  alignItems: "center",
-	  justifyContent: "center",
-  },
-  title: {
-  	margin: "50px",
-  	fontSize: "50pt"
-  },
-  card: {
-  	backgroundColor: "skyblue"
-  },
-  cardContent: {
-  	display: "flex",
-  	flexDirection: "column",
-  	alignItems: "center",
-  	justifyContent: "center"
-  }
+	root: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	title: {
+		margin: "50px",
+		fontSize: "50pt"
+	},
+	card: {
+		backgroundColor: "skyblue"
+	},
+	cardContent: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "center"
+	}
 });
 
 const DashBoard = () => {
@@ -57,7 +57,7 @@ const DashBoard = () => {
 			return
 		}
 		const dividenInstance = new web3.eth.Contract(DIVIDEN_ABI, dividenAddress);
-		await dividenInstance.methods.claimDividend().send({from: myAddress});
+		await dividenInstance.methods.claimDividend().send({ from: myAddress });
 	}
 
 	return (
@@ -67,22 +67,22 @@ const DashBoard = () => {
 			</div>
 			<Card>
 				<div className={classes.card}>
-		      <CardContent className={classes.cardContent}>
-		        <Typography gutterBottom variant="headline" component="h2" mx={5}>
-		          Pending MIM Token Rewards
-		        </Typography>
-		        <Typography component="p" my={1}>
-		          {reward && reward} MIM
-		        </Typography>
-		        <Button
-		        	variant="contained"
-				  		onClick={handleClaim}
-		        >
-		        	Claim
-		        </Button>
-		      </CardContent>
-		    </div>
-	    </Card>
+					<CardContent className={classes.cardContent}>
+						<Typography gutterBottom variant="headline" component="h2" mx={5}>
+							Pending MIM Token Rewards
+						</Typography>
+						<Typography component="p" my={1}>
+							{reward && reward} MIM
+						</Typography>
+						<Button
+							variant="contained"
+							onClick={handleClaim}
+						>
+							Claim
+						</Button>
+					</CardContent>
+				</div>
+			</Card>
 		</div>
 	);
 }

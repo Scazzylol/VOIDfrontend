@@ -1,12 +1,13 @@
 import React from 'react';
 import DashBoard from '../pages/dashboard';
+import Iframe from '../pages/iframe'
 
-const MainLayout = () => {
+import { SWAP_LINK, CHART_LINK } from '../config/link'
+
+const BuyLayout = () => {
 	return (
-		<div>
-			<DashBoard />
-		</div>
+		<Iframe targetUrl={CHART_LINK} />
 	);
 }
 
-export default MainLayout;
+export default BuyLayout;

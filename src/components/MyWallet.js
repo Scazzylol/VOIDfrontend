@@ -10,6 +10,12 @@ import {
 import web3 from '../core/web3';
 import voidInstance from '../core/voidInstance';
 import { CHAIN_ID } from '../config/config';
+import styled from 'styled-components'
+
+const WalletButton = styled(Button)`
+	background-color: rgb(37, 150, 190) !important;
+	font-family: Mulish, sans-serif !important;
+`
 
 const MyWallet = () => {
 
@@ -17,13 +23,13 @@ const MyWallet = () => {
 	const account = useSelector((state) => state.main.myAddress);
 
 	if (typeof window.ethereum === 'undefined') {
-	  console.log('MetaMask is not installed!');
-	  return;
+		console.log('MetaMask is not installed!');
+		return;
 	} else if (window.ethereum.chainId !== CHAIN_ID) {
 		const checkNetwork = async () => {
 			await window.ethereum.request({
-			  method: 'wallet_switchEthereumChain',
-			  params: [{ chainId: CHAIN_ID }],
+				method: 'wallet_switchEthereumChain',
+				params: [{ chainId: CHAIN_ID }],
 			});
 		};
 		checkNetwork();
@@ -39,11 +45,11 @@ const MyWallet = () => {
 
 	const handleConnectWallet = async () => {
 		try {
-		  // Request account access
-		  await window.ethereum.enable();
-		} catch(e) {
-		  // User denied access
-		  return false;
+			// Request account access
+			await window.ethereum.enable();
+		} catch (e) {
+			// User denied access
+			return false;
 		}
 		const accounts = await web3.eth.getAccounts();
 		dispatch(setMyAddress(accounts[0]));
@@ -52,24 +58,17 @@ const MyWallet = () => {
 		dispatch(setDividenAddress(dividenAddress));
 
 		setTimeout(() => getBalance(accounts[0]));
-  }
+	}
 
 	const shortenAddress = (address) => {
 		return address.substring(0, 7) + "..." + address.substring(address.length - 5)
 	}
 
 	return (
-  	<Button 
-  		variant="contained" 
-  		onClick={handleConnectWallet}
-  	>
-  		{!account ?
-  			"Connect to MetaMask"
-			:
-				shortenAddress(account)
-			}
-  	</Button>
-  )
+		<WalletButton variant="contained" onClick={handleConnectWallet}>
+			{account ? shortenAddress(account) : "Connect to MetaMask"}
+		</WalletButton>
+	)
 }
 
 export default MyWallet;

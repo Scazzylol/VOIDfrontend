@@ -1,0 +1,2 @@
+export const SWAP_LINK = 'https://spookyswap.finance/swap?outputCurrency=0x69520162902785B2EA7031363208b65A3948fe3c'
+export const CHART_LINK = 'https://dexscreener.com/fantom/0xc73c46e06d2a9406f2babe0c2048ee17ab5c48e8'
