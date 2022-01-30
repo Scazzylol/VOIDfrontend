@@ -1,5 +1,6 @@
 
 import styled from 'styled-components'
+import { NavLink as Link } from 'react-router-dom'
 
 export const HeaderContainer = styled.div`
     background-color: #3b3d54;
@@ -38,7 +39,7 @@ export const NavBar = styled.span`
     height: auto;
 `
 
-export const NavLink = styled.a`
+export const NavLink = styled(Link)`
     margin: 0;
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 500;
@@ -52,7 +53,7 @@ export const NavLink = styled.a`
     text-decoration: none;
 `
 
-export const WalletAmount = styled(NavLink)`
+export const WalletAmount = styled.a`
     text-transform: none;
     padding-right: 20px;
     margin: 0px;
