@@ -102,20 +102,36 @@ const DashBoard = () => {
 				params={{
 					fpsLimit: 60,
 					particles: {
+						fullScreen: {
+							enable: true,
+							zIndex: -20
+						},
+						number: {
+							density: {
+								enable: true,
+								value_area: 1000
+							},
+							value: 80
+						},
 						color: {
 							value: "#ffffff"
 						},
 						links: {
 							enable: true,
 							color: "#ffffff",
-							distance: 150
+							opacity: 0.1,
+							distance: 250
 						},
 						move: {
 							enable: true
 						},
 						opacity: {
-							value: 0.2
-						}
+							value: 1,
+							random: true,
+							anim: {
+								enable: true
+							}
+						},
 					}
 				}}
 			/>

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { NavLink as Link } from 'react-router-dom'
 
 export const HeaderContainer = styled.div`
-    background-color: #3b3d54;
+    background-color: #161616;
     display: flex;
     flex: row;
     align-items: center;
