@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import Particles from 'react-tsparticles'
 import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import styled from 'styled-components'
 
 import web3 from '../../core/web3';
 import { DIVIDEN_ABI } from '../../config/config';
@@ -18,19 +20,35 @@ const useStyles = makeStyles({
 		justifyContent: "center",
 	},
 	title: {
-		margin: "50px",
-		fontSize: "50pt"
+		margin: "50px 20px",
+		fontSize: "35pt",
+		color: "white",
+		fontFamily: "Mulish,sans-serif"
 	},
 	card: {
-		backgroundColor: "skyblue"
+		background: "none",
+		border: "1px solid white"
 	},
 	cardContent: {
+		color: "white",
+		fontFamily: "Mulish,sans-serif",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center"
-	}
+	},
+	claim_text: {
+		color: "rgb(255, 165, 0)"
+	},
 });
+
+const ClaimButton = styled(Button)`
+	background-color: rgb(255, 165, 0) !important;
+	padding: 10px 45px !important;
+	color: black !important;
+	font-weight: bold !important;
+	font-size: 15px !important;
+`
 
 const DashBoard = () => {
 	const classes = useStyles();
@@ -65,24 +83,42 @@ const DashBoard = () => {
 			<div className={classes.title}>
 				Void Dashboard
 			</div>
-			<Card>
+			<Card className={classes.card}>
 				<div className={classes.card}>
 					<CardContent className={classes.cardContent}>
 						<Typography gutterBottom variant="headline" component="h2" mx={5}>
 							Pending MIM Token Rewards
 						</Typography>
-						<Typography component="p" my={1}>
+						<Typography className={classes.claim_text} component="p" my={1}>
 							{reward && reward} MIM
 						</Typography>
-						<Button
-							variant="contained"
-							onClick={handleClaim}
-						>
+						<ClaimButton variant="contained" onClick={handleClaim} className={classes.claim_btn}>
 							Claim
-						</Button>
+						</ClaimButton>
 					</CardContent>
 				</div>
 			</Card>
+			<Particles
+				params={{
+					fpsLimit: 60,
+					particles: {
+						color: {
+							value: "#ffffff"
+						},
+						links: {
+							enable: true,
+							color: "#ffffff",
+							distance: 150
+						},
+						move: {
+							enable: true
+						},
+						opacity: {
+							value: 0.2
+						}
+					}
+				}}
+			/>
 		</div>
 	);
 }
