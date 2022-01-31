@@ -37,8 +37,27 @@ const MyWallet = () => {
 		console.log(error);
 	}
 
+	const handleConnected = async () => {
+		const accounts = await web3.eth.getAccounts();
+		dispatch(setMyAddress(accounts[0]));
+		const dividenAddress = await voidInstance.methods.distributorAddress().call();
+		dispatch(setDividenAddress(dividenAddress));
+		setTimeout(() => getBalance(accounts[0]));
+	}
+
 	useEffect(() => {
-		window.ethereum.on('close', onDisconnect);
+		if (window.ethereum?.selectedAddress !== null)
+			handleConnected()
+
+		if (window.ethereum) {
+			window.ethereum.on('chainChanged', () => {
+				window.location.reload();
+			})
+
+			window.ethereum.on('accountsChanged', () => {
+				window.location.reload();
+			})
+		}
 	}, [])
 
 	const getBalance = async (account) => {
@@ -49,7 +68,11 @@ const MyWallet = () => {
 		setTimeout(() => getBalance(account));
 	}
 
+
+
 	const handleConnectWallet = async () => {
+		if (account)
+			return;
 		try {
 			// Request account access
 			await window.ethereum.enable();
@@ -57,13 +80,7 @@ const MyWallet = () => {
 			// User denied access
 			return false;
 		}
-		const accounts = await web3.eth.getAccounts();
-		dispatch(setMyAddress(accounts[0]));
-
-		const dividenAddress = await voidInstance.methods.distributorAddress().call();
-		dispatch(setDividenAddress(dividenAddress));
-
-		setTimeout(() => getBalance(accounts[0]));
+		handleConnected()
 	}
 
 	const shortenAddress = (address) => {
