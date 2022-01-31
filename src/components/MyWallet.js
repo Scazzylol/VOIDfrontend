@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import {
@@ -18,13 +18,11 @@ const WalletButton = styled(Button)`
 `
 
 const MyWallet = () => {
-
 	const dispatch = useDispatch();
 	const account = useSelector((state) => state.main.myAddress);
 
 	if (typeof window.ethereum === 'undefined') {
 		console.log('MetaMask is not installed!');
-		return;
 	} else if (window.ethereum.chainId !== CHAIN_ID) {
 		const checkNetwork = async () => {
 			await window.ethereum.request({
@@ -34,6 +32,14 @@ const MyWallet = () => {
 		};
 		checkNetwork();
 	}
+
+	const onDisconnect = (error) => {
+		console.log(error);
+	}
+
+	useEffect(() => {
+		window.ethereum.on('close', onDisconnect);
+	}, [])
 
 	const getBalance = async (account) => {
 		const val = await voidInstance.methods.balanceOf(account).call();

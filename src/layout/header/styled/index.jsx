@@ -53,6 +53,20 @@ export const NavLink = styled(Link)`
     text-decoration: none;
 `
 
+export const ExternalLink = styled.a`
+    margin: 0;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    margin-bottom: 0.35em;
+    margin-left: 16px;
+    margin-right: 16px;
+    color: white;
+    text-decoration: none;
+`
+
 export const WalletAmount = styled.a`
     text-transform: none;
     padding-right: 20px;

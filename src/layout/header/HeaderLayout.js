@@ -12,6 +12,7 @@ import {
 	Logo,
 	NavBar,
 	NavLink,
+	ExternalLink,
 	WallertWrapper,
 	WalletAmount,
 	MainContainer
@@ -34,7 +35,7 @@ const HeaderLayout = () => {
 					<NavLink to='/buy' >Buy</NavLink>
 					<NavLink to='/chart'>Chart</NavLink>
 					<NavLink to='/rewards'>Rewards</NavLink>
-					<NavLink to={{ pathname: "https://example.zendesk.com/hc/en-us/articles/123456789-Privacy-Policies" }} target="_blank">Discord</NavLink>
+					<ExternalLink href='https://discord.gg/dDvATUcM' target="_blank">Discord</ExternalLink>
 				</NavBar>
 			</MainContainer>
 
