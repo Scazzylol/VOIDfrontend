@@ -5,14 +5,12 @@ import Landing from '../pages/landing';
 import DashBoard from '../pages/dashboard';
 import Iframe from '../pages/iframe'
 import ComingSoon from '../pages/coming'
-import Particles from '../components/Particles'
 
 import { SWAP_LINK, CHART_LINK } from '../config/link'
 
 const MainLayout = () => {
 	return (
 		<>
-			<Particles />
 			<Routes>
 				<Route exact path="/" element={<Landing />} />
 				<Route exact path="/buy" element={<Iframe targetUrl={SWAP_LINK} />} />

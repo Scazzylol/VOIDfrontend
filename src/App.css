@@ -4,6 +4,7 @@
 }
 
 .App-header {
+  z-index: 100;
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
