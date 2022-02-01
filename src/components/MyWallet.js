@@ -17,6 +17,8 @@ const WalletButton = styled(Button)`
 	font-family: Mulish, sans-serif !important;
 `
 
+const CACHE_KEY = 'useCache';
+
 const MyWallet = () => {
 	const dispatch = useDispatch();
 	const account = useSelector((state) => state.main.myAddress);
@@ -33,8 +35,11 @@ const MyWallet = () => {
 		checkNetwork();
 	}
 
-	const onDisconnect = (error) => {
-		console.log(error);
+	const handleDisconnected = () => {
+		localStorage.setItem(CACHE_KEY, 'false');
+		dispatch(setMyAddress(null));
+		dispatch(setDividenAddress(null));
+		dispatch(setMyBalance(0))
 	}
 
 	const handleConnected = async () => {
@@ -46,10 +51,11 @@ const MyWallet = () => {
 	}
 
 	useEffect(() => {
-		if (window.ethereum?.selectedAddress !== null)
-			handleConnected()
-
 		if (window.ethereum) {
+			const useChace = localStorage.getItem(CACHE_KEY);
+			if (!useChace || useChace === 'true')
+				handleConnected();
+
 			window.ethereum.on('chainChanged', () => {
 				window.location.reload();
 			})
@@ -71,8 +77,10 @@ const MyWallet = () => {
 
 
 	const handleConnectWallet = async () => {
-		if (account)
+		if (account) {
+			handleDisconnected();
 			return;
+		}
 		try {
 			// Request account access
 			await window.ethereum.enable();
@@ -80,7 +88,8 @@ const MyWallet = () => {
 			// User denied access
 			return false;
 		}
-		handleConnected()
+		localStorage.setItem(CACHE_KEY, 'true');
+		handleConnected();
 	}
 
 	const shortenAddress = (address) => {
@@ -89,7 +98,7 @@ const MyWallet = () => {
 
 	return (
 		<WalletButton variant="contained" onClick={handleConnectWallet}>
-			{account ? shortenAddress(account) : "Connect to MetaMask"}
+			{account ? "Disconnect" : "Connect"}
 		</WalletButton>
 	)
 }
