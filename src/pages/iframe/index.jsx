@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import Iframe from 'react-iframe'
+import Particles from '../../components/Particles'
 
 const useStyles = makeStyles({
     iframeWrapper: {
@@ -30,7 +31,6 @@ const BuyLayout = ({ targetUrl }) => {
                 display="initial"
                 position="relative" />
         </div>
-
     );
 }
 

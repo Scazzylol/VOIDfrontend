@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Particles from 'react-tsparticles'
 import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -41,6 +40,10 @@ const useStyles = makeStyles({
 		color: "rgb(255, 165, 0)"
 	},
 });
+
+const Highlighted = styled.span`
+    color: rgb(255, 165, 0)
+`
 
 const ClaimButton = styled(Button)`
 	background-color: rgb(255, 165, 0) !important;
@@ -87,10 +90,10 @@ const DashBoard = () => {
 				<div className={classes.card}>
 					<CardContent className={classes.cardContent}>
 						<Typography gutterBottom variant="headline" component="h2" mx={5}>
-							Pending MIM Token Rewards
+							Pending <Highlighted>DAI</Highlighted> Token Rewards
 						</Typography>
 						<Typography className={classes.claim_text} component="p" my={1}>
-							{reward && reward} MIM
+							{reward && reward} DAI
 						</Typography>
 						<ClaimButton variant="contained" onClick={handleClaim} className={classes.claim_btn}>
 							Claim
@@ -98,43 +101,6 @@ const DashBoard = () => {
 					</CardContent>
 				</div>
 			</Card>
-			<Particles
-				params={{
-					fpsLimit: 60,
-					particles: {
-						fullScreen: {
-							enable: true,
-							zIndex: -20
-						},
-						number: {
-							density: {
-								enable: true,
-								value_area: 1000
-							},
-							value: 80
-						},
-						color: {
-							value: "#ffffff"
-						},
-						links: {
-							enable: true,
-							color: "#ffffff",
-							opacity: 0.1,
-							distance: 250
-						},
-						move: {
-							enable: true
-						},
-						opacity: {
-							value: 1,
-							random: true,
-							anim: {
-								enable: true
-							}
-						},
-					}
-				}}
-			/>
 		</div>
 	);
 }
