@@ -53,6 +53,8 @@ const ClaimButton = styled(Button)`
 	font-size: 15px !important;
 `
 
+
+
 const DashBoard = () => {
 	const classes = useStyles();
 

@@ -59,6 +59,17 @@ const Title = styled.h1`
     text-transform: uppercase;
 `
 
+export const ImageContainer = styled.div`
+    display: flex;
+    flex: row;
+    align-items: center;
+    justify-content: start;
+`
+
+const Image = styled.img`
+    margin-top: 50px;
+`
+
 const ComingSoon = () => {
     const classes = useStyles();
 
@@ -66,6 +77,9 @@ const ComingSoon = () => {
         <div className={classes.root}>
             <div className={classes.title}>
                 <Title><Highlighted>Treasury</Highlighted> is coming soon</Title>
+                <ImageContainer>
+                    <Image src='/img/icons/coins.png' />
+                </ImageContainer>
             </div>
         </div >
     );

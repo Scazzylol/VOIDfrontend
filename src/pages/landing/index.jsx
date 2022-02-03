@@ -57,6 +57,18 @@ const Title = styled.h1`
     font-family: "Mulish" ,sans-serif;
     text-transform: uppercase;
 `
+const MainContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+    padding-top: 80px;
+    padding-right: 200px;
+`
+
+const Image = styled.img`
+    filter: invert(1);
+    height: 200px;
+`
 
 const Landing = () => {
     const classes = useStyles();
@@ -73,6 +85,13 @@ const Landing = () => {
                 <DescTypography variant="headline" component="h2">
                     Contract address: 0x69a0f8D5428813c8aec85e3ff3E8E2c5d4D8A80c
                 </DescTypography>
+            </Card>
+            <Card className={classes.card}>
+                <MainContainer>
+                    <Image src='/img/icons/bank.png' />
+                    <Image src='/img/icons/dev.png' />
+                    <Image src='/img/icons/dividend.png' />
+                </MainContainer>
             </Card>
         </div >
     );

@@ -11,11 +11,10 @@ function App() {
     <Router>
       <Provider store={store}>
         <div className="App">
-
+          <Particles />
           <div className="App-header">
             <HeaderLayout />
           </div>
-          <Particles />
           <MainLayout />
         </div>
       </Provider>
