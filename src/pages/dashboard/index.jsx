@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "center"
 	},
 	title: {
 		margin: "50px 20px",
@@ -26,7 +26,8 @@ const useStyles = makeStyles({
 	},
 	card: {
 		background: "none",
-		border: "1px solid white"
+		border: "1px solid white",
+		width: "35%"
 	},
 	cardContent: {
 		color: "white",
@@ -39,6 +40,9 @@ const useStyles = makeStyles({
 	claim_text: {
 		color: "rgb(255, 165, 0)"
 	},
+	space: {
+		marginBottom: "50px"
+	}
 });
 
 const Highlighted = styled.span`
@@ -89,20 +93,41 @@ const DashBoard = () => {
 				Void Dashboard
 			</div>
 			<Card className={classes.card}>
-				<div className={classes.card}>
-					<CardContent className={classes.cardContent}>
-						<Typography gutterBottom variant="headline" component="h2" mx={5}>
-							Pending <Highlighted>DAI</Highlighted> Token Rewards
-						</Typography>
-						<Typography className={classes.claim_text} component="p" my={1}>
-							{reward && reward} DAI
-						</Typography>
-						<ClaimButton variant="contained" onClick={handleClaim} className={classes.claim_btn}>
-							Claim
-						</ClaimButton>
-					</CardContent>
-				</div>
+				<CardContent className={classes.cardContent}>
+					<Typography gutterBottom variant="headline" component="h2" mx={5}>
+						Pending <Highlighted>DAI</Highlighted> Token Rewards
+					</Typography>
+					<Typography className={classes.claim_text} component="p" my={1}>
+						{reward && reward} DAI
+					</Typography>
+					<ClaimButton variant="contained" onClick={handleClaim} className={classes.claim_btn}>
+						Claim
+					</ClaimButton>
+				</CardContent>
 			</Card>
+			<div className={classes.space} />
+			<Card className={classes.card}>
+				<CardContent className={classes.cardContent}>
+					<Typography gutterBottom variant="headline" component="h2" mx={5}>
+						Total <Highlighted>DAI</Highlighted> Token Rewards
+					</Typography>
+					<Typography className={classes.claim_text} component="p" my={1}>
+						{reward && reward} DAI
+					</Typography>
+				</CardContent>
+			</Card>
+			<div className={classes.space} />
+			<Card className={classes.card}>
+				<CardContent className={classes.cardContent}>
+					<Typography gutterBottom variant="headline" component="h2" mx={5}>
+						Your Total <Highlighted>DAI</Highlighted> Token Rewards
+					</Typography>
+					<Typography className={classes.claim_text} component="p" my={1}>
+						{reward && reward} DAI
+					</Typography>
+				</CardContent>
+			</Card>
+			<div className={classes.space} />
 		</div>
 	);
 }
